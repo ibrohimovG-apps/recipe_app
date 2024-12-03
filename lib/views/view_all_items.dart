@@ -52,7 +52,7 @@ class _ViewAllItemsState extends State<ViewAllItems> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 15, right: 5),
+        padding: const EdgeInsets.only(left: 15, right: 5),
         child: Column(
           children: [
             const SizedBox(
