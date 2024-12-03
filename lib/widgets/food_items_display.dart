@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:recipe_app/Provider/favourite_provider.dart';
 
 class FoodItemsDisplay extends StatelessWidget {
   final DocumentSnapshot<Object?> documentSnapshot;
@@ -8,6 +9,7 @@ class FoodItemsDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = FavouriteProvider.of(context);
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -94,11 +96,17 @@ class FoodItemsDisplay extends StatelessWidget {
                 radius: 18,
                 backgroundColor: Colors.white,
                 child: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Iconsax.heart,
+                  onTap: () {
+                    provider.toggleFavorite(documentSnapshot);
+                  },
+                  child: Icon(
+                    provider.isExist(documentSnapshot)
+                        ? Iconsax.heart5
+                        : Iconsax.heart,
                     size: 20,
-                    color: Colors.black,
+                    color: provider.isExist(documentSnapshot)
+                        ? Colors.red
+                        : Colors.black,
                   ),
                 ),
               ),

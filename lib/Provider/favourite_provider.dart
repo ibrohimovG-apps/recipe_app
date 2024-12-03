@@ -22,7 +22,7 @@ class FavouriteProvider extends ChangeNotifier {
   }
 
   bool isExist(DocumentSnapshot product) {
-    return _favouriteIds.contains(product);
+    return _favouriteIds.contains(product.id);
   }
 
   Future<void> _addFavourite(String productId) async {
