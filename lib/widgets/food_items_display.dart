@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app/provider/favourite_provider.dart';
+import 'package:recipe_app/views/recipe_detail_screen.dart';
 
 class FoodItemsDisplay extends StatelessWidget {
   final DocumentSnapshot<Object?> documentSnapshot;
@@ -11,7 +12,16 @@ class FoodItemsDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = FavouriteProvider.of(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecipeDetailScreen(
+              documentSnapshot: documentSnapshot,
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
         width: 230,
@@ -20,15 +30,18 @@ class FoodItemsDisplay extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 160,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        documentSnapshot['image'],
+                Hero(
+                  tag: documentSnapshot['image'],
+                  child: Container(
+                    width: double.infinity,
+                    height: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          documentSnapshot['image'],
+                        ),
                       ),
                     ),
                   ),
