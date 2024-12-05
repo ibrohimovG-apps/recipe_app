@@ -15,7 +15,7 @@ class QuantityIncrementDecrement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         border: Border.all(
           width: 2.5,
@@ -28,24 +28,24 @@ class QuantityIncrementDecrement extends StatelessWidget {
         children: [
           IconButton(
             onPressed: onRemove,
-            icon: Icon(Iconsax.minus),
+            icon: const Icon(Iconsax.minus),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
             currentNumber.toString(),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           IconButton(
             onPressed: onAdd,
-            icon: Icon(Iconsax.add),
+            icon: const Icon(Iconsax.add),
           ),
         ],
       ),

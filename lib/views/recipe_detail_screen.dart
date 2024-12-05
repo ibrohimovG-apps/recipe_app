@@ -283,7 +283,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                                     height: 60,
                                     child: Center(
                                       child: Text(
-                                        "${amount} gm",
+                                        "$amount gm",
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey.shade400,

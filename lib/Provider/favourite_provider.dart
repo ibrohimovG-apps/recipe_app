@@ -33,7 +33,7 @@ class FavouriteProvider extends ChangeNotifier {
         },
       );
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -41,7 +41,7 @@ class FavouriteProvider extends ChangeNotifier {
     try {
       await _firestore.collection("userFavourite").doc(productId).delete();
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -51,7 +51,7 @@ class FavouriteProvider extends ChangeNotifier {
           await _firestore.collection("userFavourite").get();
       _favouriteIds = snapshot.docs.map((doc) => doc.id).toList();
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
     notifyListeners();
   }
