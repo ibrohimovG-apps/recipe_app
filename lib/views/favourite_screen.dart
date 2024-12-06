@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app/provider/favourite_provider.dart';
 import 'package:recipe_app/utils/constants.dart';
+import 'package:recipe_app/views/recipe_detail_screen.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -59,88 +60,104 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(15),
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        favouriteItem['image'],
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RecipeDetailScreen(
+                                    documentSnapshot: favouriteItem,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: Row(
+                                children: [
+                                  Hero(
+                                    tag: favouriteItem['image'],
+                                    child: Container(
+                                      width: 100,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.white,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                            favouriteItem['image'],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      favouriteItem['name'],
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        favouriteItem['name'],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Iconsax.flash_1,
-                                          size: 16,
-                                          color: Colors.grey,
-                                        ),
-                                        Text(
-                                          "${favouriteItem['cal']} Cal",
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.flash_1,
+                                            size: 16,
                                             color: Colors.grey,
                                           ),
-                                        ),
-                                        const Text(
-                                          " . ",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w900,
+                                          Text(
+                                            "${favouriteItem['cal']} Cal",
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          const Text(
+                                            " . ",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Iconsax.clock,
+                                            size: 16,
                                             color: Colors.grey,
                                           ),
-                                        ),
-                                        const Icon(
-                                          Iconsax.clock,
-                                          size: 16,
-                                          color: Colors.grey,
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          "${favouriteItem['time']} Min",
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
+                                          const SizedBox(
+                                            width: 5,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
+                                          Text(
+                                            "${favouriteItem['time']} Min",
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
